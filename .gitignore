@@ -46,6 +46,7 @@ compile_commands.json
 *.log
 
 # VSCode
+.vs/*
 .vscode/*
 !.vscode/extensions.json
 .DS_Store
