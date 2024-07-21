@@ -56,7 +56,7 @@ def find_directories(directory):
         directories.extend(["src/" + os.path.relpath(os.path.join(root, d), directory).replace("\\", "/") + "/" for d in dirs])
     return directories
 
-source_dirs = find_directories("filepath")
+source_dirs = find_directories("projectpath")
 env.Append(CPPPATH=source_dirs)
 
 #env.Append(CPPPATH=["src/"])
