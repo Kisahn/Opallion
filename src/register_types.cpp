@@ -4,8 +4,6 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-#include "gdexample.h"
-
 using namespace godot;
 
 void initialize_gdextension_types(ModuleInitializationLevel p_level)
