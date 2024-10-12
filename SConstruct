@@ -12,7 +12,7 @@ def validate_parent_dir(key, val, env):
 
 
 libname = "gdexample"
-projectdir = "demo"
+projectdir = "Opallion"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
 
