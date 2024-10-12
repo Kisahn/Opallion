@@ -18,6 +18,10 @@ demo/bin/windows/*
 !demo/bin/*.gdextension
 .sconsign*.dblite
 
+# Ignore other files than src & Opallion
+bin/
+godot-cpp/
+
 # Ignore custom.py
 custom.py
 
