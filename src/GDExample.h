@@ -1,36 +1,30 @@
-#ifndef GDEXAMPLE_H
+#ifndef GDEXAMPLH_H
 #define GDEXAMPLE_H
 
 #include <godot_cpp/classes/sprite2d.hpp>
 
-namespace godot {
+using namespace godot;
 
-	class GDExample : public Sprite2D
-	{
-		GDCLASS(GDExample, Sprite2D)
+class GDExample : public Sprite2D
+{
+	GDCLASS(GDExample, Sprite2D)
 
-		public:
-			GDExample();
-			~GDExample();
+public:
+	GDExample();
+	~GDExample();
 
-			void _process(double _delta) override;
+	void _process(double delta) override;
 
-			double getAmplitude() const;
-			double getSpeed() const;
+	void set_amplitude(const double p_amplitude);
+	double get_amplitude() const;
 
-			void setAmplitude(const double p_amplitude);
-			void setSpeed(const double p_speed);
+protected:
+	static void _bind_methods();
 
-		protected:
-			static void _bind_methods();
+private:
+	double time_passed;
+	double amplitude;
+	double time_emit;
+};
 
-		private:
-			double time_passed;
-			double amplitude;
-			double speed;
-			double time_emit;
-	};
-
-}
-
-#endif // !GDEXAMPLE_H
+#endif

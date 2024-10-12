@@ -3,64 +3,50 @@
 
 using namespace godot;
 
-godot::GDExample::GDExample()
+void GDExample::_bind_methods()
 {
-	time_passed = 0.0;
-	amplitude = 10.0;
-	speed = 1.0;
+	ClassDB::bind_method(D_METHOD("get_amplitude"), &GDExample::get_amplitude);
+	ClassDB::bind_method(D_METHOD("set_amplitude", "p_amplitude"), &GDExample::set_amplitude);
+	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "amplitude"), "set_amplitude", "get_amplitude");
+	ADD_SIGNAL(MethodInfo("position_changed", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::VECTOR2, "new_pos")));
 }
 
-godot::GDExample::~GDExample()
+GDExample::GDExample()
 {
+	time_passed = 0.;
+	amplitude = 10.;
 }
 
-void godot::GDExample::_process(double _delta)
+GDExample::~GDExample()
 {
-	time_passed += speed * _delta;
+
+}
+
+void GDExample::_process(double delta)
+{
+	time_passed += delta;
 
 	Vector2 new_position = Vector2(
-			amplitude + (amplitude * sin(time_passed * 2.0)),
-			amplitude + (amplitude * cos(time_passed * 1.5))
-	);
+					amplitude + (amplitude * sin(time_passed * 2.)),
+					amplitude + (amplitude * cos(time_passed * 1.5)));
 
 	set_position(new_position);
 
-	time_emit += _delta;
-	if (time_emit > 1.0) {
+	time_emit += delta;
+	if (time_emit > 1.)
+	{
 		emit_signal("position_changed", this, new_position);
-		time_emit = 0.0;
+
+		time_emit = 0.;
 	}
 }
 
-double godot::GDExample::getAmplitude() const
-{
-	return amplitude;
-}
-
-double godot::GDExample::getSpeed() const
-{
-	return speed;
-}
-
-void godot::GDExample::setAmplitude(const double p_amplitude)
+void GDExample::set_amplitude(const double p_amplitude)
 {
 	amplitude = p_amplitude;
 }
 
-void godot::GDExample::setSpeed(const double p_speed)
+double GDExample::get_amplitude() const
 {
-	speed = p_speed;
-}
-
-void godot::GDExample::_bind_methods()
-{
-	ClassDB::bind_method(D_METHOD("getAmplitude"), &GDExample::getAmplitude);
-	ClassDB::bind_method(D_METHOD("setAmplitude", "p_amplitude"), &GDExample::setAmplitude);
-	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "amplitude"), "setAmplitude", "getAmplitude");
-
-	ClassDB::bind_method(D_METHOD("getSpeed"), &GDExample::getSpeed);
-	ClassDB::bind_method(D_METHOD("setSpeed", "p_speed"), &GDExample::setSpeed);
-	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed", PROPERTY_HINT_RANGE, "0,20,0.01"), "setSpeed", "getSpeed");
-
-	ADD_SIGNAL(MethodInfo("position_changed", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::VECTOR2, "new_pos")));
+	return amplitude;
 }

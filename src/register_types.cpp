@@ -5,7 +5,6 @@
 #include <godot_cpp/godot.hpp>
 
 #include "GDExample.h"
-#include "../Modules/Player.h"
 
 using namespace godot;
 
@@ -15,8 +14,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 		return;
 	}
 
-	GDREGISTER_CLASS(GDExample);
-	GDREGISTER_CLASS(Player);
+	GDREGISTER_CLASS(GDExample)
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {
